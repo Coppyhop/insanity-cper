@@ -1,22 +1,15 @@
-#undef GLFW_DLL
 #include <GLFW/glfw3.h>
-#include <cstdlib>
-#include <iostream>
-using namespace std;
+#include "engine.h"
 
 int main() {
-  if (!glfwInit()) {
-    cerr << "Can't initialize GLFW" << endl;
-    exit (EXIT_FAILURE);
-  }
+  WindowManager windowManager;
 
-  GLFWwindow *win;
-  win = glfwCreateWindow (450, 300, "Hello", NULL, NULL);
-  glfwMakeContextCurrent(win);
-  while (!glfwWindowShouldClose(win)) {
-    glfwWaitEvents();
+  std::cout << "Creating the window..." << std::endl;
+  windowManager.init();
+  GLFWwindow* window = windowManager.createWindow(640,480, "Test", false);
+  while(!windowManager.shouldWindowClose(window)){
+    windowManager.update(window);
   }
-  glfwDestroyWindow(win);
-  glfwTerminate();
+  windowManager.destroyWindow(window);
   return 0;
 }

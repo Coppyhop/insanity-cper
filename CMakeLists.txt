@@ -1,6 +1,12 @@
 cmake_minimum_required(VERSION 3.17)
 project(iSweep)
-add_executable(iSweep src/main.cpp)
+set(TARGET_H
+    engine.h
+)
+set(TARGET_SRC
+    WindowManager.cpp
+)
+add_executable(iSweep src/main.cpp src/WindowManager.cpp)
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
