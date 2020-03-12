@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.17)
 project(iSweep)
+set(CMAKE_CXX_FLAGS "-mwindows")
 set(TARGET_H
     engine.h
 )

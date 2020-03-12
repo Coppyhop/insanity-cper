@@ -3,8 +3,6 @@
 
 int main() {
   WindowManager windowManager;
-
-  std::cout << "Creating the window..." << std::endl;
   windowManager.init();
   GLFWwindow* window = windowManager.createWindow(640,480, "Test", false);
   while(!windowManager.shouldWindowClose(window)){

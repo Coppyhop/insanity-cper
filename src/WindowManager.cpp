@@ -5,9 +5,7 @@
 #include <iostream>
 #include "engine.h"
 
-WindowManager::WindowManager(){
-    std::cout<<"Window manager insantiated"<<std::endl;
-}
+WindowManager::WindowManager(){}
 
 void WindowManager::init(){
     //glfwSetErrorCallback(glfwerror_callback);
