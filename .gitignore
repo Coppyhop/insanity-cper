@@ -1,2 +1,5 @@
 glfw-3.3.2/
 build/
+.vs/
+.vscode/
+x64/

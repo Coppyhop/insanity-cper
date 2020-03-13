@@ -1,5 +1,3 @@
-#include <GL/gl.h>
-#include <GL/glext.h>
 #include <cstdlib>
 #include <iostream>
 #include <RenderEngine.h>
