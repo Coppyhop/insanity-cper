@@ -120,10 +120,14 @@
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\RenderEngine.cpp" />
+    <ClCompile Include="src\ShaderProgram.cpp" />
+    <ClCompile Include="src\texture.cpp" />
     <ClCompile Include="src\WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\RenderEngine.h" />
+    <ClInclude Include="header\ShaderProgram.h" />
+    <ClInclude Include="header\texture.h" />
     <ClInclude Include="header\WindowManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

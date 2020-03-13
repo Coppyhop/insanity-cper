@@ -24,12 +24,24 @@
     <ClCompile Include="src\WindowManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\ShaderProgram.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\RenderEngine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="header\WindowManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ShaderProgram.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
