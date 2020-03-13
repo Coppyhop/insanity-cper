@@ -1,5 +1,5 @@
-#include<string>
 #undef GLFW_DLL
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <cstdlib>
 #include <iostream>

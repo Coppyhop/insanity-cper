@@ -1,25 +1,48 @@
-#include <cstdlib>
-#include <iostream>
 #include <RenderEngine.h>
+#include <GL/glew.h>
+#include <GL/glut.h>
+
 
 void RenderEngine::initOpenGL(){
-    
+    glEnable(GL_TEXTURE_2D);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glClearColor(1, 0, 0, 1);
+    loadVertices();
+    lastFrame = 0; //TODO: System.nanoTime() but C++ version
 }
 
 void RenderEngine::loadVertices(){
-
-}
-
-void RenderEngine::genFBO(){
+    glGenBuffers(1, buffers);
+    glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
+    //Allocate 20 floats worth of bytes to the buffer
+    //12 for vertices, and 8 for texture coords
+    glBufferData(GL_ARRAY_BUFFER, 20 * 4, NULL, GL_STATIC_DRAW);
+    //Now put in all the data we need
+    glBufferSubData(GL_ARRAY_BUFFER, 0, 12*4,vertices);
+    glBufferSubData(GL_ARRAY_BUFFER, 12 * 4, 8 * 4, texCoords);
+    //Next is the index buffer... 
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, buffers[1]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6*4, indicies, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
 }
 
 void RenderEngine::prepareRender(){
-
+    glClear(GL_COLOR_BUFFER_BIT);
+    glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, buffers[1]);
+    glEnableVertexAttribArray(0);
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(0, 3, GL_FLOAT, false, 0, BUFFER_OFFSET(0));
+    glVertexAttribPointer(1, 2, GL_FLOAT, false, 0, BUFFER_OFFSET(48));
 }
 
 void RenderEngine::endRender(){
-
+    glDisableVertexAttribArray(1);
+    glDisableVertexAttribArray(0);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 
 void RenderEngine::drawRender(){
@@ -29,11 +52,23 @@ void RenderEngine::drawRender(){
 //void RenderEngine::renderEntity(Entity entity){}
 
 RenderEngine::RenderEngine(int width, int height, float UIScale){
-
+    this->width = width;
+    this->height = height;
+    this->uiScale = UIScale;
+    deltaTime = 0;
+    lastFrame = 0;
+    time = 0;
+    initOpenGL();
 }
 
 RenderEngine::RenderEngine(int width, int height){
-
+    this->width = width;
+    this->height = height;
+    uiScale = 1;
+    deltaTime = 0;
+    lastFrame = 0;
+    time = 0;
+    initOpenGL();
 }
 
 float RenderEngine::getWidth(){
@@ -59,5 +94,10 @@ float RenderEngine::getDeltaTime(){
 //void RenderEngine::processEntity(Entity entity){}
 
 void RenderEngine::render(){
-
+    prepareRender();
+    //Main rendering shtuff
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+    endRender();
+    drawRender();
+    //Clear this frame's object list
 }

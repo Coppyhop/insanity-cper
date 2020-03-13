@@ -1,8 +1,3 @@
-#undef GLFW_DLL
-#include <GLFW/glfw3.h>
-#include <string>
-#include <cstdlib>
-#include <iostream>
 #include "WindowManager.h"
 
 WindowManager::WindowManager(){}
@@ -17,12 +12,16 @@ void WindowManager::init(){
 GLFWwindow* WindowManager::createWindow(int width, int height, 
         const char * title, bool vSync){
     glfwDefaultWindowHints();
-    glfwWindowHint(GLFW_VISIBLE, GLFW_TRUE);
+    glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
     glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
     glfwWindowHint(GLFW_DECORATED, GLFW_TRUE);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
     GLFWwindow* window = glfwCreateWindow(width, height, title, NULL, NULL);
+    glfwMakeContextCurrent(window);
+    glewInit();
+    glfwShowWindow(window);
+    return window;
 }
 
 bool WindowManager::shouldWindowClose(GLFWwindow* window){

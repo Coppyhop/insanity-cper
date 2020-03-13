@@ -1,5 +1,7 @@
 #include <cstdlib>
 #include <iostream>
+#define BUFFER_OFFSET(i) ((void*)(i))
+
 
 class RenderEngine {
 private:
@@ -7,8 +9,8 @@ private:
     float uiScale;
     long deltaTime;
     long lastFrame;
-    int fboTexId;
     int time;
+    unsigned int buffers[2];
     float vertices[12] = {
         0, 0, 0,
         0, -1, 0,
@@ -16,14 +18,10 @@ private:
         1, 0, 0
     };
     float texCoords[8] = { 0,0,0,1,1,1,1,0 };
-    int indicies[6] = { 0,1,3,3,1,2 };
-    int rectVBOId;
-    int iboID;
-    int fboID;
+    float indicies[6] = { 0,1,3,3,1,2 };
 
     void initOpenGL();
     void loadVertices();
-    void genFBO();
     void prepareRender();
     void endRender();
     void drawRender();
