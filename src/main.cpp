@@ -1,5 +1,5 @@
 #include <GLFW/glfw3.h>
-#include "engine.h"
+#include "WindowManager.h"
 
 int main() {
   WindowManager windowManager;
